@@ -1,6 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
-
-module.exports = nextConfig
+ module.exports ={
+     env: {
+        "BASE_URL": "http://localhost:3000",
+         "MONGODB_URL": "mongodb+srv://shope:shope123@cluster0.gyht3.mongodb.net/ikiguy?retryWrites=true&w=majority",
+         "ACCESS_TOKEN_SECRET": "P$(HZp284f6q.y.[F<=&t4V2[F+*Y3%y6c=(',=>p-z#NPn<W-",
+         "REFRESH_TOKEN_SECRET": "fD@8Y-smYeDQa&y]n=L$-}Epf5e>M'FJj~4A<v\H]m7&sGubueb\;eq]2+;~N_:p39;N>#PWst((2rtL"
+     }
+ }
