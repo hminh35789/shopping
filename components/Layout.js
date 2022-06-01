@@ -1,6 +1,8 @@
 import React from 'react'
+import Modal from './Modal'
 import NarBar from './NarBar'
 import Notify from './Notify'
+
 function Layout({children}) {
   return (
       <div>
@@ -8,6 +10,7 @@ function Layout({children}) {
             
         </NarBar>
         <Notify />
+        <Modal />
         {children}
       </div>
 
