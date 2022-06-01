@@ -5,8 +5,8 @@ import { deleteData } from '../utils/fetchData'
 import {useRouter} from 'next/router'
 
 const Modal = () => {
-    // const {state, dispatch} = useContext(DataContext)
-    // const { modal, auth } = state
+    const {state, dispatch} = useContext(DataContext)
+    const { modal, auth } = state
 
     // const router = useRouter()
 
@@ -40,23 +40,25 @@ const Modal = () => {
     //     })
     // }
 
-    // const handleSubmit = () => {
-    //     if(modal.length !== 0){
-    //         for(const item of modal){
-    //             if(item.type === 'ADD_CART'){
-    //                 dispatch(deleteItem(item.data, item.id, item.type))
-    //             }
+    const handleSubmit = () => {
+        // if(modal.length !== 0){
+        //     for(const item of modal){
+        //         if(item.type === 'ADD_CART'){
+        //             dispatch(deleteItem(item.data, item.id, item.type))
+        //         }
 
-    //             if(item.type === 'ADD_USERS') deleteUser(item)
+        //         if(item.type === 'ADD_USERS') deleteUser(item)
         
-    //             if(item.type === 'ADD_CATEGORIES') deleteCategories(item)
+        //         if(item.type === 'ADD_CATEGORIES') deleteCategories(item)
         
-    //             if(item.type === 'DELETE_PRODUCT') deleteProduct(item)
+        //         if(item.type === 'DELETE_PRODUCT') deleteProduct(item)
         
-    //             dispatch({ type: 'ADD_MODAL', payload: [] })
-    //         }
-    //     }
-    // }
+        //         dispatch({ type: 'ADD_MODAL', payload: [] })
+        //     }
+        // }
+        dispatch(deleteItem(modal.data, modal.id, "ADD_CART"))
+        dispatch({ type: 'ADD_MODAL', payload: [] })
+    }
 
     return(
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -65,6 +67,7 @@ const Modal = () => {
                 <div className="modal-header">
                     <h5 className="modal-title text-capitalize" id="exampleModalLabel">
                         {/* {modal.length !== 0 && modal[0].title} */}
+                        {modal.title}
                     </h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -75,7 +78,7 @@ const Modal = () => {
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal"
-                    //  onClick={handleSubmit}
+                     onClick={handleSubmit}
                      >Yes</button>
                     <button type="button" className="btn btn-primary" data-dismiss="modal">Cancel</button>
                 </div>
