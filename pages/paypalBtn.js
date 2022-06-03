@@ -1,12 +1,12 @@
 import { useEffect, useRef, useContext } from 'react'
-import { patchData } from '../utils/fetchData'
-import {DataContext} from '../store/GlobalState'
-import {updateItem} from '../store/Actions'
+// import { patchData } from '../utils/fetchData'
+// import {DataContext} from '../store/GlobalState'
+// import {updateItem} from '../store/Actions'
 
 const PaypalBtn = ({state, dispatch,total, address, mobile, }) => {
     const refPaypalBtn = useRef()
     // const {state, dispatch} = useContext(DataContext)
-    const { cart, auth} = state
+    // const { cart, auth} = state
 
     useEffect(() => {
         paypal.Buttons({
