@@ -53,7 +53,7 @@ function Cart() {
     } 
   },[])
   ////////////////////////////////////////////////////
-  const handlePayment = async () => {
+  const handlePayment =  () => {
     if(!address || !mobile)
     return dispatch({ type: 'NOTIFY', payload: {error: 'Please add your address and mobile.'}})
     setPayment(true)

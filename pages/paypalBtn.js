@@ -46,10 +46,9 @@ const PaypalBtn = ({state, dispatch,total, address, mobile, }) => {
 
               });
             }
-        }).render( 
-            refPaypalBtn.current
-            );
-    },[])
+        }).render(refPaypalBtn.current); 
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+         },[])
 
     return(
         <div ref={refPaypalBtn}></div>
