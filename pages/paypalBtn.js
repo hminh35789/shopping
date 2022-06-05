@@ -4,10 +4,10 @@ import { postData } from '../utils/fetchData'
 // import {updateItem} from '../store/Actions'
 
 
-const PaypalBtn = ({total, address, mobile,state, dispatch, }) => {
+const PaypalBtn = ({total, address, mobile,sttate, dispatch, }) => {
     const refPaypalBtn = useRef()
     // const {state, dispatch} = useContext(DataContext)
-    const { cart, auth} = state
+    const {  auth} = state
 
     useEffect(() => {
         paypal.Buttons({

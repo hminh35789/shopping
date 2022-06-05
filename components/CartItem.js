@@ -50,7 +50,8 @@ const CartItem = ({item, dispatch, cart}) => {
                 type: 'ADD_MODAL',
                 payload: 
                 //[
-                    { data: cart, id: item._id, title: item.title, type: 'ADD_CART' 
+                    { data: cart, id: item._id, title: item.title,
+                        // type: 'ADD_CART' 
                 }
            // ]
             })}
