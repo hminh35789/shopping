@@ -1,12 +1,13 @@
 import { useEffect, useRef, useContext } from 'react'
-// import { patchData } from '../utils/fetchData'
+import { postData } from '../utils/fetchData'
 // import {DataContext} from '../store/GlobalState'
 // import {updateItem} from '../store/Actions'
 
-const PaypalBtn = ({state, dispatch,total, address, mobile, }) => {
+
+const PaypalBtn = ({total, address, mobile,state, dispatch, }) => {
     const refPaypalBtn = useRef()
     // const {state, dispatch} = useContext(DataContext)
-    // const { cart, auth} = state
+    const { cart, auth} = state
 
     useEffect(() => {
         paypal.Buttons({
@@ -23,11 +24,21 @@ const PaypalBtn = ({state, dispatch,total, address, mobile, }) => {
             },
             onApprove: function(data, actions) {
               // This function captures the funds from the transaction.
-            //   dispatch({ type: 'NOTIFY', payload: {loading: true} })
+              dispatch({ type: 'NOTIFY', payload: {loading: true} })
 
               return actions.order.capture().then(function(details) {
                 
-                alert('trantsdsds' + details.payer.name.given_name)
+               
+                postData('order', { address, mobile, cart, total}, auth.token)
+                .then(res => {
+                  if(res.err) return dispatch({type: 'NOTIFY', payload: { error: res.err}})
+
+                  dispatch({ type: 'ADD_CART', payload: [] })
+                  return dispatch({ type: 'NOTIFY', payload: {success: res.msg} })
+
+                })
+
+                
                 // patchData(`order/payment/${order._id}`, {
                 //   paymentId: details.payer.payer_id
                 // }, auth.token)
