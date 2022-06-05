@@ -54,7 +54,7 @@ function Cart() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   ////////////////////////////////////////////////////
-  const handlePayment =  () => {
+  const handlePayment =  async () => {
     if(!address || !mobile)
     return dispatch({ type: 'NOTIFY', payload: {error: 'Please add your address and mobile.'}})
     setPayment(true)
