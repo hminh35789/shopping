@@ -5,14 +5,14 @@ import { DataContext } from '../store/GlobalState'
 // import CartItem from '../components/CartItem'
 import Link from 'next/link'
 import { getData, postData } from '../utils/fetchData'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import CartItem from '../components/CartItem'
-import PaypalBtn from './paypalBtn'
+import PaypalBtn from '../components/paypalBtn'
 
 
 const Cart = () => {
   const { state, dispatch } = useContext(DataContext)
-  const { cart, auth, orders } = state
+  const { cart, auth } = state
 
   const [total, setTotal] = useState(0)
   const [address, setAddress] = useState('')
@@ -123,7 +123,7 @@ const Cart = () => {
 
             {
               payment
-              ? <PaypalBtn 
+              ? <PaypalBtn
                   total={total}
                   address={address}
                   mobile={mobile}
