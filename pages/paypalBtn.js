@@ -1,10 +1,10 @@
-import { useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef } from 'react'
 import { postData } from '../utils/fetchData'
 // import {DataContext} from '../store/GlobalState'
 // import {updateItem} from '../store/Actions'
 
 
-const PaypalBtn = ({total, address, mobile,sttate, dispatch, }) => {
+const PaypalBtn = ({total, address, mobile,state, dispatch, }) => {
     const refPaypalBtn = useRef()
     // const {state, dispatch} = useContext(DataContext)
     const {  auth} = state
