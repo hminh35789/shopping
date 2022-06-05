@@ -9,7 +9,7 @@ import CartItem from '../components/CartItem'
 import PaypalBtn from './paypalBtn'
 
 
-function Cart() {
+const Cart = () => {
   const { state, dispatch } = useContext(DataContext)
   const { cart, auth, orders } = state
 
