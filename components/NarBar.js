@@ -41,8 +41,10 @@ function NarBar() {
               </a>
 
               <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  
-                      <a className="dropdown-item">Profile</a>
+                  <Link href="/profile">
+                     <a className="dropdown-item">Profile</a>
+                  </Link>
+                      
                 
                   {/* {
                       auth.user.role === 'admin' && adminRouter()
