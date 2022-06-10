@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 
 import Head from 'next/head'
 import { useState, useContext, useEffect } from 'react'
@@ -7,7 +8,7 @@ import Link from 'next/link'
 import valid from '../utils/valid'
 import { patchData } from '../utils/fetchData'
 
-// import {imageUpload} from '../utils/imageUpload'
+import {imageUpload} from '../utils/imageUpload'
 
 const Profile = () => {
     const initialSate = {
@@ -36,20 +37,20 @@ const Profile = () => {
 
     const handleUpdateProfile = e => {
         e.preventDefault()
-        if(name === ''|| cf_password === '' || password === ''){
-            const errMsg = valid(name, auth.user.email, password, cf_password)
+        // if(name === ''|| cf_password === '' || password === ''){
+        //     const errMsg = valid(name, auth.user.email, password, cf_password)
             
-            if(errMsg) return dispatch({ type: 'NOTIFY', payload: {error: errMsg} })
-            // updatePassword()
-        }
-        if(password || name){
+        //     if(errMsg) return dispatch({ type: 'NOTIFY', payload: {error: errMsg} })
+        //     // updatePassword()
+        // }
+        if(password){
             const errMsg = valid(name, auth.user.email, password, cf_password)
             console.log(errMsg)
             if(errMsg) return dispatch({ type: 'NOTIFY', payload: {error: errMsg} })
             updatePassword()
         }
 
-        // if(name !== auth.user.name || avatar) updateInfor()
+        if(name !== auth.user.name || avatar) updateInfor()
     }
     const updatePassword = () => {
         dispatch({ type: 'NOTIFY', payload: {loading: true} })
@@ -60,38 +61,39 @@ const Profile = () => {
         })
     }
 
-    // const changeAvatar = (e) => {
-    //     const file = e.target.files[0]
-    //     if(!file)
-    //         return dispatch({type: 'NOTIFY', payload: {error: 'File does not exist.'}})
-
-    //     if(file.size > 1024 * 1024) //1mb
-    //         return dispatch({type: 'NOTIFY', payload: {error: 'The largest image size is 1mb.'}})
-
-    //     if(file.type !== "image/jpeg" && file.type !== "image/png") //1mb
-    //         return dispatch({type: 'NOTIFY', payload: {error: 'Image format is incorrect.'}})
+    const changeAvatar = (e) => {
         
-    //     setData({...data, avatar: file})
-    // }
+        const file = e.target.files[0]
+        if(!file)
+            return dispatch({type: 'NOTIFY', payload: {error: 'File does not exist.'}})
 
-    // const updateInfor = async () => {
-    //     let media;
-    //     dispatch({type: 'NOTIFY', payload: {loading: true}})
+        if(file.size > 1024 * 1024) //1mb
+            return dispatch({type: 'NOTIFY', payload: {error: 'The largest image size is 1mb.'}})
 
-    //     if(avatar) media = await imageUpload([avatar])
+        if(file.type !== "image/jpeg" && file.type !== "image/png") //format
+            return dispatch({type: 'NOTIFY', payload: {error: 'Image format is incorrect.'}})
+        
+        setData({...data, avatar: file})
+    }
 
-    //     patchData('user', {
-    //         name, avatar: avatar ? media[0].url : auth.user.avatar
-    //     }, auth.token).then(res => {
-    //         if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
+    const updateInfor = async () => {
+        let media;
+        dispatch({type: 'NOTIFY', payload: {loading: true}})
 
-    //         dispatch({type: 'AUTH', payload: {
-    //             token: auth.token,
-    //             user: res.user
-    //         }})
-    //         return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
-    //     })
-    // }
+        if(avatar) media = await imageUpload([avatar])
+        console.log(media)
+        patchData('user', {
+            name, avatar: avatar ? media[0].url : auth.user.avatar
+        }, auth.token).then(res => {
+            if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
+
+            dispatch({type: 'AUTH', payload: {
+                token: auth.token,
+                user: res.user
+            }})
+            return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
+        })
+    }
 
     if(!auth.user) return null;
     return(
@@ -107,13 +109,14 @@ const Profile = () => {
                     </h3>
 
                     <div className="avatar">
-                        <img src={auth.user.avatar} 
+                        <img src={ avatar ? URL.createObjectURL(avatar) :  auth.user.avatar} 
                         alt="avatar" />
                         <span>
                             <i className="fas fa-camera"></i>
                             <p>Change</p>
                             <input type="file" name="file" id="file_up"
-                            // accept="image/*" onChange={changeAvatar} 
+                             accept="image/*"
+                             onChange={changeAvatar} 
                             />
                         </span>
                     </div>
