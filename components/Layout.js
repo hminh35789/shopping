@@ -1,7 +1,7 @@
 import React from 'react'
-import Modal from './Modal'
 import NarBar from './NarBar'
 import Notify from './Notify'
+import Modal from './Modal'
 
 function Layout({children}) {
   return (
