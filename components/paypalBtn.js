@@ -7,7 +7,7 @@ import { postData } from '../utils/fetchData'
 const PaypalBtn = ({ total, address, mobile, state, dispatch }) => {
     const refPaypalBtn = useRef()
     // const {state, dispatch} = useContext(DataContext)
-    const { cart, auth} = state
+    const { cart, auth, orders} = state
 
     useEffect(() => {
         paypal.Buttons({
@@ -33,7 +33,15 @@ const PaypalBtn = ({ total, address, mobile, state, dispatch }) => {
                 .then(res => {
                   if(res.err) return dispatch({type: 'NOTIFY', payload: { error: res.err}})
 
+                  
+
                   dispatch({ type: 'ADD_CART', payload: [] })
+                  const newOrder = {
+                    ...res.newOrder,
+                    user: auth.user
+                  }
+                  dispatch({ type: 'ADD_ORDERS', payload: [...orders, newOrder] })
+
                   return dispatch({ type: 'NOTIFY', payload: {success: res.msg} })
 
                 })
