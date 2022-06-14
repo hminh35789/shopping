@@ -4,7 +4,9 @@ import { postData } from '../utils/fetchData'
 // import {updateItem} from '../store/Actions'
 
 
-const PaypalBtn = ({ total, address, mobile, state, dispatch }) => {
+const PaypalBtn = ({ total, order
+  // , address, mobile, state, dispatch 
+}) => {
     const refPaypalBtn = useRef()
     // const {state, dispatch} = useContext(DataContext)
     const { cart, auth, orders} = state
