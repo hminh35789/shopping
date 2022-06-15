@@ -29,9 +29,8 @@ const OrderDetail = ({orderDetail, state, dispatch}) => {
         <>
             {
         orderDetail.map(order => (
-       <div key={order._id} style={{ margin:"20px auto"}}>
-                <div  className="row justify-content-around">
-
+       <div key={order._id} style={{ margin:"20px auto"}}  className="row justify-content-around">
+                
                     <div className="text-uppercase my-3" style={{maxWidth: '600px'}}>
                         <h2 className="text-break">Order {order._id}</h2>
 
@@ -101,16 +100,21 @@ const OrderDetail = ({orderDetail, state, dispatch}) => {
                         </div>
 
                     </div>
-                                
-                    {/* {
-                        !order.paid && auth.user.role !== 'admin' &&
+
+                    {/* <div className='p-4'> 
+                     <h2 className='mb-4 text-uppercase'>Total: ${order.total}</h2>
+                     <PaypalBtn order={order} />
+                    </div>    */}
+                    {
+                        !order.paid && 
+                        // auth.user.role !== 'admin' &&
                         <div className="p-4">
                             <h2 className="mb-4 text-uppercase">Total: ${order.total}</h2>
                             <PaypalBtn order={order} />
                         </div>
-                    } */}
+                    }
                 
-                </div>
+                
         </div>
         ))
     }
