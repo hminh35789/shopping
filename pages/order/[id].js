@@ -21,7 +21,7 @@ const DetailOrder = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[orders])
             
-    // if(!auth.user) return null;
+    if(!auth.user) return null;
     return(
         <div className="my-3">
             <Head>
@@ -35,8 +35,7 @@ const DetailOrder = () => {
             </div>
           
             
-            <OrderDetail orderDetail={orderDetail} 
-            // state={state} dispatch={dispatch} 
+            <OrderDetail orderDetail={orderDetail} state={state} dispatch={dispatch} 
             />
         
         </div>

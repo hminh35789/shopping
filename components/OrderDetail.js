@@ -1,30 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
 import PaypalBtn from './paypalBtn'
-// import {patchData} from '../utils/fetchData'
-// import {updateItem} from '../store/Actions'
+import {patchData} from '../utils/fetchData'
+import {updateItem} from '../store/Actions'
 
 const OrderDetail = ({orderDetail, state, dispatch}) => {
-    // const {auth, orders} = state
+    const {auth, orders} = state
 
-    // const handleDelivered = (order) => {
-    //     dispatch({type: 'NOTIFY', payload: {loading: true}})
+    const handleDelivered = (order) => {
+        dispatch({type: 'NOTIFY', payload: {loading: true}})
 
-    //     patchData(`order/delivered/${order._id}`, null, auth.token)
-    //     .then(res => {
-    //         if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
+        patchData(`order/delivered/${order._id}`, null, auth.token)
+        .then(res => {
+            if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
+            
+            const { paid, dateOfPayment, method, delivered } = res.result
 
-    //         const { paid, dateOfPayment, method, delivered } = res.result
+            dispatch(updateItem(orders, order._id, {
+                ...order, 
+                 paid, dateOfPayment, method, delivered
+            }, 'ADD_ORDERS'))
 
-    //         dispatch(updateItem(orders, order._id, {
-    //             ...order, paid, dateOfPayment, method, delivered
-    //         }, 'ADD_ORDERS'))
+            return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
+        })
+    }
 
-    //         return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
-    //     })
-    // }
-
-    // if(!auth.user) return null;
+    if(!auth.user) return null;
     return(
         <>
             {
@@ -46,24 +47,24 @@ const OrderDetail = ({orderDetail, state, dispatch}) => {
                                 {
                                     order.delivered ? `Deliverd on ${order.updatedAt}` : 'Not Delivered'
                                 }
-                                {/* {
+                                {
                                     auth.user.role === 'admin' && !order.delivered &&
                                     <button className="btn btn-dark text-uppercase"
                                     onClick={() => handleDelivered(order)}>
                                         Mark as delivered
                                     </button>
-                                } */}
+                                }
                                 
                             </div>
 
                             <h3>Payment</h3>
-                            {/* {
+                            {
                                 order.method && <h6>Method: <em>{order.method}</em></h6>
                             }
                             
                             {
                                 order.paymentId && <p>PaymentId: <em>{order.paymentId}</em></p>
-                            } */}
+                            }
                            
                             <div className={`alert ${order.paid ? 'alert-success' : 'alert-danger'}
                             d-flex justify-content-between align-items-center`} role="alert">
@@ -106,8 +107,7 @@ const OrderDetail = ({orderDetail, state, dispatch}) => {
                      <PaypalBtn order={order} />
                     </div>    */}
                     {
-                        !order.paid && 
-                        // auth.user.role !== 'admin' &&
+                        !order.paid &&  auth.user.role !== 'admin' &&
                         <div className="p-4">
                             <h2 className="mb-4 text-uppercase">Total: ${order.total}</h2>
                             <PaypalBtn order={order} />
