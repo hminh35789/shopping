@@ -8,7 +8,7 @@ import {DataContext} from '../store/GlobalState'
 import Cookie from 'js-cookie'
 
 function NarBar() {
-    const route = useRouter();
+    const route = useRouter()
     const {state, dispatch} = useContext(DataContext)
     const { auth , cart} = state
 
@@ -25,7 +25,7 @@ function NarBar() {
         localStorage.removeItem('firstLogin')
         dispatch({ type: 'AUTH', payload: {} })
         dispatch({ type: 'NOTIFY', payload: {success: 'Logged out!'} })
-        // return router.push('/')
+        return route.push('/')
     }
 
     const adminRouter = () => {

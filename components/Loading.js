@@ -9,6 +9,7 @@ const Loading = () => {
             </svg>
             <h1>okeee</h1>
         </div>
+       
     )
 }
 

@@ -45,3 +45,11 @@
 ::-webkit-file-upload-button{
     cursor: pointer;
 }
+
+/* Edit User*/
+.ss
+{   border-radius: 10px;
+    border: 1px solid lightskyblue;
+    max-width: 400px;
+    padding: 30px;
+}

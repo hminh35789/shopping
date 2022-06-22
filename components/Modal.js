@@ -41,23 +41,30 @@ const Modal = () => {
     // }
 
     const handleSubmit = () => {
-        // if(modal.length !== 0){
-        //     for(const item of modal){
-        //         if(item.type === 'ADD_CART'){
-        //             dispatch(deleteItem(item.data, item.id, item.type))
-        //         }
+       // if(modal.length !== 0){
+           // for(const item of modal){
+                if(modal.type === 'ADD_USERS'){
+                  //  dispatch(
+                        deleteData(`user/${modal.id}`, auth.token
+                           // item.data, item.id, item.type
+                            ) .then(res => {
+                                if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
+                                return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
+                            })
+                       // )
+                }
 
-        //         if(item.type === 'ADD_USERS') deleteUser(item)
+                // if(item.type === 'ADD_USERS') deleteUser(item)
         
-        //         if(item.type === 'ADD_CATEGORIES') deleteCategories(item)
+                // if(item.type === 'ADD_CATEGORIES') deleteCategories(item)
         
-        //         if(item.type === 'DELETE_PRODUCT') deleteProduct(item)
+                // if(item.type === 'DELETE_PRODUCT') deleteProduct(item)
         
-        //         dispatch({ type: 'ADD_MODAL', payload: [] })
-        //     }
-        // }
-        dispatch(deleteItem(modal.data, modal.id, "ADD_CART"))
-        dispatch({ type: 'ADD_MODAL', payload: [] })
+                // dispatch({ type: 'ADD_MODAL', payload: [] })
+         //   }
+      //  }
+        dispatch(deleteItem(modal.data, modal.id, modal.type))
+        dispatch({ type: 'ADD_MODAL', payload: {} })
     }
 
     return(
