@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import connectDB from '../../../utils/connectDB'
 import Products from '../../../model/productModel'
+import auth from '../../../middlewave/auth'
 
 connectDB()
 
@@ -9,9 +10,12 @@ export default async (req, res) => {
         case "GET":
             await getProduct(req, res)
             break;
-        // case "POST":
-        //     await createProduct(req, res)
-        //     break;
+        case "PUT":
+            await updateProduct(req, res)
+            break;
+        case "DELETE":
+            await deleteProduct(req, res)
+            break;
     }
 }
 
@@ -57,8 +61,6 @@ export default async (req, res) => {
 
 const getProduct = async (req, res) => {
     try {
-        // const features = new APIfeatures(Products.find(), req.query)
-        // .filtering().sorting().paginating()
         const { id } = req.query;
 
         const product = await Products.findById(id)
@@ -72,24 +74,39 @@ const getProduct = async (req, res) => {
     }
 }
 
-// const createProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
+    try {
+        const result = await auth(req, res)
+        if(result.role !== 'admin') 
+        return res.status(400).json({err: 'Authentication is not valid.'})
+
+        const {id} = req.query
+        const { title, price, inStock, description, content, category, images } = req.body
+
+        if( !title || !price || !inStock || !description || !content || category === 'all' || images.length === 0)
+        return res.status(400).json({err: 'Please add all the fields.'})
+
+        await Products.findOneAndUpdate({_id: id}, {
+            title, price, inStock, description, content, category, images
+        }) 
+
+        res.json({msg: 'Success! Updated a product'})
+    } catch (err) {
+        return res.status(500).json({err: err.message})
+    }
+}
+
+// const deleteProduct = async(req, res) => {
 //     try {
 //         const result = await auth(req, res)
-//         if(result.role !== 'admin') return res.status(400).json({err: 'Authentication is not valid.'})
+        
+//         if(result.role !== 'admin') 
+//         return res.status(400).json({err: 'Authentication is not valid.'})
 
-//         const {title, price, inStock, description, content, category, images} = req.body
+//         const {id} = req.query
 
-//         if(!title || !price || !inStock || !description || !content || category === 'all' || images.length === 0)
-//         return res.status(400).json({err: 'Please add all the fields.'})
-
-
-//         const newProduct = new Products({
-//             title: title.toLowerCase(), price, inStock, description, content, category, images
-//         })
-
-//         await newProduct.save()
-
-//         res.json({msg: 'Success! Created a new product'})
+//         await Products.findByIdAndDelete(id)
+//         res.json({msg: 'Deleted a product.'})
 
 //     } catch (err) {
 //         return res.status(500).json({err: err.message})

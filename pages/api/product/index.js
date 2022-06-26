@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import connectDB from '../../../utils/connectDB'
 import Products from '../../../model/productModel'
+import auth from '../../../middlewave/auth'
 
 connectDB()
 
@@ -9,9 +10,9 @@ export default async (req, res) => {
         case "GET":
             await getProducts(req, res)
             break;
-        // case "POST":
-        //     await createProduct(req, res)
-        //     break;
+        case "POST":
+            await createProduct(req, res)
+            break;
     }
 }
 
@@ -72,26 +73,28 @@ const getProducts = async (req, res) => {
     }
 }
 
-// const createProduct = async (req, res) => {
-//     try {
-//         const result = await auth(req, res)
-//         if(result.role !== 'admin') return res.status(400).json({err: 'Authentication is not valid.'})
+const createProduct = async (req, res) => {
+    try {
+        const result = await auth(req, res)
+        if(result.role !== 'admin') return res.status(400).json({err: 'Authentication is not valid.'})
 
-//         const {title, price, inStock, description, content, category, images} = req.body
+        const {  title, price, inStock, description, content, category, images } = req.body
 
-//         if(!title || !price || !inStock || !description || !content || category === 'all' || images.length === 0)
-//         return res.status(400).json({err: 'Please add all the fields.'})
+        if(  !title || !price || !inStock || !description || !content ||  category === 'all' || images.length === 0)
+        return res.status(400).json({err: 'Please  add all the fields.'})
 
+        // const product = await Products.findOne({ product_id })
+        // if(product)  return res.status(400).json({err: 'This product already exist.'}) 
 
-//         const newProduct = new Products({
-//             title: title.toLowerCase(), price, inStock, description, content, category, images
-//         })
+        const newProduct = new Products({
+            title: title.toLowerCase(), price, inStock, description, content, category, images
+        })
 
-//         await newProduct.save()
+        await newProduct.save()
 
-//         res.json({msg: 'Success! Created a new product'})
+        res.json({msg: 'Success! Created a new product'})
 
-//     } catch (err) {
-//         return res.status(500).json({err: err.message})
-//     }
-// }
+    } catch (err) {
+        return res.status(500).json({err: err.message})
+    }
+}

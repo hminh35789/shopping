@@ -53,6 +53,16 @@ const Modal = () => {
                             })
                        // )
                 }
+                if(modal.type === 'ADD_CATEGORIES'){
+                    //  dispatch(
+                          deleteData(`categories/${modal.id}`, auth.token
+                             // item.data, item.id, item.type
+                              ) .then(res => {
+                                  if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
+                                  return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
+                              })
+                         // )
+                  }
 
                 // if(item.type === 'ADD_USERS') deleteUser(item)
         

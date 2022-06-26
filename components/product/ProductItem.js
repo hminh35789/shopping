@@ -28,6 +28,30 @@ const ProductItem = ({product}) =>{
             </>
         )
     }
+    const adminLink = () => {
+        return(
+            <>
+                <Link href={`create/${product._id}`}>
+                    <a className="btn btn-info"
+                    style={{marginRight: '5px', flex: 1}}>Edit</a>
+                </Link>
+                <button className="btn btn-danger"
+                style={{marginLeft: '5px', flex: 1}}
+                // data-toggle="modal" data-target="#exampleModal"
+                // onClick={() => dispatch({
+                //     type: 'ADD_MODAL',
+                //     payload: [{ 
+                //         data: '', id: product._id, 
+                //         title: product.title, type: 'DELETE_PRODUCT' 
+                //     }]
+                // })} 
+                >
+                    Delete
+                </button>
+            </>
+        )
+    }
+    
     return(
         <div className="card" style={{width: '18rem'}}>
         <img className="card-img-top" src={product.images[0].url} alt="Card image cap" />
@@ -49,7 +73,7 @@ const ProductItem = ({product}) =>{
         </p>
         <div className="row justify-content-between mx-0">
                     
-                    {userLink()}
+            {!auth.user || auth.user.role !== "admin" ? userLink() : adminLink()}
         </div>
     </div>
         </div>
