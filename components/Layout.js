@@ -5,7 +5,8 @@ import Modal from './Modal'
 
 function Layout({children}) {
   return (
-      <div>
+      <div >
+        
         <NarBar>
             
         </NarBar>

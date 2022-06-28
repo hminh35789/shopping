@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { DataContext } from '../../store/GlobalState'
 import { addToCart } from '../../store/Actions'
 
-const ProductItem = ({product}) =>{
+const ProductItem = ({ product , handleCheck }) =>{
     const { state, dispatch } = useContext(DataContext)
     const { cart, auth } = state
 
@@ -37,14 +37,15 @@ const ProductItem = ({product}) =>{
                 </Link>
                 <button className="btn btn-danger"
                 style={{marginLeft: '5px', flex: 1}}
-                // data-toggle="modal" data-target="#exampleModal"
-                // onClick={() => dispatch({
-                //     type: 'ADD_MODAL',
-                //     payload: [{ 
-                //         data: '', id: product._id, 
-                //         title: product.title, type: 'DELETE_PRODUCT' 
-                //     }]
-                // })} 
+                data-toggle="modal" data-target="#exampleModal"
+                onClick={() => dispatch({
+                    type: 'ADD_MODAL',
+                    payload:
+                   [{ 
+                        data: '', id: product._id, 
+                        title: product.title, type: 'DELETE_PRODUCT' 
+                    }]
+                })} 
                 >
                     Delete
                 </button>
@@ -54,11 +55,19 @@ const ProductItem = ({product}) =>{
     
     return(
         <div className="card" style={{width: '18rem'}}>
-        <img className="card-img-top" src={product.images[0].url} alt="Card image cap" />
-    <div className="card-body">
-        <h5 className="card-title text-capitalize" title={product.title}>
-            {product.title}
-        </h5>
+            {
+                auth.user && auth.user.role === 'admin' &&
+                <input type='checkbox' checked={product.checked} 
+                className="position-absolute"
+                style={{height: '20px', width: '20px'}}
+                 onChange={() => handleCheck(product._id)}
+                />
+            }
+            <img className="card-img-top" src={product.images[0].url} alt="Card image cap" />
+            <div className="card-body">
+                <h5 className="card-title text-capitalize" title={product.title}>
+                     {product.title}
+                 </h5>
 
         <div className="row justify-content-between mx-0">
             <h6 className="text-danger">${product.price}</h6>
