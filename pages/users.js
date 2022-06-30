@@ -66,7 +66,7 @@ const Users = () => {
                                         data-toggle="modal" data-target="#exampleModal"
                                         onClick={() => dispatch({
                                             type: 'ADD_MODAL',
-                                            payload: { data: users, id: user._id, title: user.name, type: 'ADD_USERS' }
+                                            payload: [{ data: users, id: user._id, title: user.name, type: 'ADD_USERS' }]
                                         })}
                                         ></i>
                                         

@@ -10,7 +10,7 @@ import { useState, useContext, useEffect } from 'react'
 import {DataContext} from '../store/GlobalState'
 import filterSearch from '../utils/filterSearch'
 import {useRouter} from 'next/router'
-// import Filter from '../components/Filter'
+import Filter from '../components/Filter'
 
  const  Home =(props) => {
   const [ products, setProducts] = useState(props.products)
@@ -29,9 +29,9 @@ import {useRouter} from 'next/router'
   useEffect(() => {
     if(Object.keys(router.query).length === 0) 
     setPage(1)
-    else{
-      setPage(Number(router.query.page))
-    }
+    // else{
+    //   setPage(Number(router.query.page))
+    // }
   },[router.query])
 
   const handleCheck = (id) => {
@@ -70,6 +70,7 @@ import {useRouter} from 'next/router'
         <Head>
           <title>IKIGUY</title>
         </Head>
+        <Filter state={state} />
         {
         auth.user && auth.user.role === 'admin' &&
         <div className="delete_all btn btn-danger mt-2" style={{marginBottom: '-10px'}}>
@@ -94,7 +95,7 @@ import {useRouter} from 'next/router'
           }
          </div>
          {
-        props.result < page * 3 ? ""
+        props.result < page * 6 ? ""
         : <button className="btn btn-outline-info d-block mx-auto mb-4"
         onClick={handleLoadmore}>
           Load more
@@ -113,7 +114,7 @@ export async function getServerSideProps({ query }) {
   const search = query.search || 'all'
   
   const res = await getData(
-    `product?limit=${page * 3}&category=${category}&sort=${sort}&title=${search}`
+    `product?limit=${page * 6}&category=${category}&sort=${sort}&title=${search}`
   )
  
   // serve side rendering
