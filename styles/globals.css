@@ -19,7 +19,19 @@ img
   object-fit: cover;
   object-position: 0 30%;
 }
+.annouce
+{
+  background: lightskyblue;
+  color: beige;
+  
+}
+.annouce h6{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5%;
+  /* margin-left: 20px; */
 
+}
 @import url("./minh.css");
 
 @import url("./product.css");

@@ -67,9 +67,11 @@ import Filter from '../components/Filter'
   return (
     
       <div className='home_page'>
+         
         <Head>
           <title>IKIGUY</title>
         </Head>
+       
         <Filter state={state} />
         {
         auth.user && auth.user.role === 'admin' &&
