@@ -22,6 +22,12 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }
+/* anh thumnail detail page*/
+.galary img
+{
+     width: 20%;
+     height: 20%;
+}
 
 .row
 {
@@ -31,4 +37,16 @@
 .detail_page .img-thumbnail.active{
     border:solid 3px rgb(111, 199, 221);
     padding: 2px;
+}
+@media  (max-width : 650px)
+{
+   .galary img
+   {
+        width: 25%;
+    
+   }
+    .galary h2
+   {
+    color: blue;
+   }
 }

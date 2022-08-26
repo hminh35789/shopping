@@ -43,13 +43,13 @@ import { addToCart } from '../../store/Actions'
                style={{height: '350px'}} 
                />
 
-                <div className="row mx-0" 
+                <div className="row mx-0 galary" 
                 style={{cursor: 'pointer'}}
                 >
                 {product.images.map((img, index) => (
                     <img key={index} src={img.url} alt={img.url}
-                    className={`img-thumbnail rounded ${isActive(index)}`}
-                    style={{height: '80px', width: '20%'}}
+                    className={`img-thumbnail rounded  ${isActive(index)} `}
+                    // style={{height: '80px', width: '20%'}}
                     // setTab index
                     onClick={() => setTab(index)}
                      />
