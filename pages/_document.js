@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-sync-scripts */
 import Document, {Html, Head, Main, NextScript} from "next/document";
-
+import Link from "next/link";
 
 class MyDocument extends Document{
     render(){
@@ -26,16 +26,43 @@ class MyDocument extends Document{
 
                      </NextScript>
                  <footer>
-                    <a
-                    href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >
-                    Powered by{' '}
-                    <span>
-                        <img style={{background:"red"}} sizes='16x16' src="/logoC.png" alt="Vercel Logo" width={72} height={16} />
-                    </span>
-                    </a>
+                 <div style={{marginTop: "50px", marginLeft: '20px'}}>
+        <ul>
+            <li>
+                <Link href="/contact">
+                    <a>CONTACT US</a>
+                </Link>
+            </li>
+            <li>
+               <Link href='#'>
+                    <a>FAQS</a>
+                </Link>
+            </li>
+            <li>
+                <Link href='#'>
+                    <a>SHIPPING &#38; RETURN</a>
+                </Link>
+            </li>
+            <li>
+                <Link href='#'>
+                    <a>PAYMENT METHODS</a>
+                </Link>
+            </li>
+        <br />
+            <li>
+                <Link href='#'>
+                    <a>INSTAGRAM</a>
+                </Link>
+            </li>
+            <li>
+                <Link href='#'>
+                    <a>LOOK BOOK</a>
+                </Link>
+            </li>
+        </ul>
+       
+       
+         </div>
                  </footer>
                  </body>
             </Html>

@@ -19,7 +19,7 @@ function Layout({children}) {
 
         <Notify />
         <Modal />
-        <div className='container'>
+        <div className='covery'>
          {children}
         </div>
        
