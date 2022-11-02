@@ -6,11 +6,12 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {DataContext} from '../store/GlobalState'
 import Cookie from 'js-cookie'
-
+import { useEffect, useState } from "react";
 function NarBar() {
     const route = useRouter()
     const {state, dispatch} = useContext(DataContext)
     const { auth , cart} = state
+    
 
     const isActive = (r)=>{
         if(r === route.pathname){
@@ -20,6 +21,8 @@ function NarBar() {
             return ""
         }
     }
+    
+  
     const handleLogout = () => {
         Cookie.remove('refreshtoken', {path: 'api/auth/accessToken'})
         localStorage.removeItem('firstLogin')
@@ -71,10 +74,57 @@ function NarBar() {
        
       )
   }
+  
+ 
+    const [scrollY, setScrollY] = useState(0);
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        setScrollY(window.scrollY);
+      };
+      handleScroll();
+  
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+  
+    }, []);
 
+   
   return (
-    
-    <nav className="navbar navbar-expand-lg navbar-light bg-light"  >
+    <div>
+        <div className='menuu'>
+            <div className={`navb  ${scrollY > 50  ? " navb2" : " "}`}>
+                
+                <a href="/" id="logo" className={scrollY > 50 ? "lose" : ""}>
+                    <img  src="/icon2.png" alt="Vercel Logo"   />
+                </a>
+                <div className="navb-right">
+                    hello
+                </div>
+                <div className="navb-left">
+                    <p>(+84) 75578609</p>
+                    <span></span>
+                    <p>Binh Tan HCM</p>
+                </div>
+            </div>
+        </div>
+  
+
+    {/* <div className='logoG'>
+    <Link href="/">
+            <a className={"name" + scrollY > 100 ? " scroll" : " " }>
+            <img className={`name  ${scrollY > 100 ? " scroll" : " "}`} src="/icon2.png" alt="Vercel Logo" id='logo'  />
+            </a>
+        </Link>
+        <div className={ scrollY > 100 ? " scroll" : " "} style={{  }}>
+        {scrollY > 100
+          ? "Scrolled more than 100px"
+          : "Still somewhere near the top!"}
+      </div>
+    </div> */}
+    <nav className={`navbar navbar-expand-lg navbar-light bg-light ${scrollY > 50  ? " navmenu" : " "}` }  >
         <Link href="/">
             <a className="navbar-brand">
             <img src="/icon2.png" alt="Vercel Logo"width={100}  />
@@ -122,6 +172,7 @@ function NarBar() {
     </ul>
   </div>
 </nav>
+</div>
   )
 }
 

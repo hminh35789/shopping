@@ -1,0 +1,245 @@
+/* .logoG
+{ overflow: hidden;
+    position: relative;
+    left: 350px;
+  transition: 0.8s !important; 
+}
+.scroll
+{
+    color: red;
+    position: fixed;
+    top: 0;
+    text-align: center;
+    z-index:1000;
+    transition: 0.8s !important;
+   
+}
+.name
+{
+    width: 100px;
+    height: 80px;
+    transition: 0.8s !important;
+} */
+.navb {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 0px 10px; /* Large padding which will shrink on scroll (using JS) */
+    transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+    position: fixed; /* Sticky/fixed navbar */
+    width: 100%;
+    top: 20px; /* At the top */
+    z-index: 99;
+  }
+  .navb2
+  {
+    padding: 30px 10px;
+    font-size: 20px;
+    top: 0;
+  }
+  /* Style the navbar links */
+  .navb a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+  }
+  
+  /* Style the logo */
+  .navb {
+    font-size: 35px;
+    font-weight: bold;
+    transition: 0.4s;
+  }
+  #logo
+  { 
+    position: absolute;
+    right: 45%;
+    top: -30px;
+    transition: top 0.4s;
+
+  }
+  #logo img
+  {
+    width: 100px;
+   
+  }
+  /* Links on mouse-over */
+  .navb a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Style the active/current link */
+  .navb a.active {
+    background-color: dodgerblue;
+    color: white;
+  }
+  
+  /* Display some links to the right */
+  .navb-right {
+    float: right;
+  }
+  .navb-left
+  {
+    
+   font-size: 12px;
+   display: flex;
+   /* align-items: center;
+   justify-content: center; */
+   padding-left: 20px;
+ 
+  }
+  .navb-left p
+  {
+    margin: 5px
+  }
+  .lose
+  {
+    top: -50px;
+    transition:  0.8s;
+  }
+  nav
+  {
+    margin-top: 30px;
+  }
+  .navmenu
+  {
+    background: red;
+    position: fixed;
+    top: 10px;
+    z-index: 99;
+    width: 100%;
+    padding: 0;
+  }
+  .modal-right
+  {
+    position: fixed;
+    top: 40px;
+    z-index: 99;
+    width: 500px;
+    right: 30px;
+  }
+   /* modal noi dung */
+  .contentModal
+  {
+    padding-left: 20px;
+  }
+  .fade
+  {
+    overflow: hidden;
+  }
+  /* .modal
+  {
+    position: fixed;
+    top: 180px;
+    width: 100%;
+    left: -500px;
+  } */
+ 
+  .box
+  {
+    width: 380px;
+    height: 260px;
+    /* background-image: url(../public/shopping.jpg); */
+    background-size: cover;
+    transform: rotate(-25deg) skew(25deg);
+    /* margin: 50px 0 70px 100px; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    transition: 0.4s;
+    display: flex;
+  }
+  .box:hover
+  {
+    transform: rotate(-25deg) skew(-25deg);
+  }
+  .box span{
+    width: 25%;
+    height: 100%;
+    background: url(../public/ikiguy_wave.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: block;
+    transition: 0.5s;
+    border-top: 5px solid rgb(112, 109, 109);
+    border-bottom: 5px solid rgb(128, 126, 126);
+
+  }
+  .box span:first-child
+  {
+    border-left: 5px solid rgb(112, 109, 109);
+  }
+  .box span:last-child
+  {
+    border-right: 5px solid rgb(112, 109, 109);
+  }
+  .box span:nth-child(1)
+  {
+    background-position: calc(-80px * 0);
+  }
+  .box span:nth-child(2)
+  {
+    background-position: calc(-90px * 1);
+  }
+  .box span:nth-child(3)
+  {
+    background-position: calc(-94px * 2);
+  }
+  .box span:nth-child(4)
+  {
+    background-position: calc(-94px * 3);
+  }
+  .box:hover span:nth-child(odd)
+  {
+    transform: skewY(25deg);
+    box-shadow: inset 10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+  .box:hover span:nth-child(even)
+  {
+    transform: skewY(-25deg);
+    box-shadow: inset 10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+
+  @media   (max-width : 500px) {
+    .box{
+      width: 300px;
+      height: 140px;
+    }
+    .box span{
+      width: 25%;
+      height: 100%;
+      background: url(../public/ikiguy_wave.png);
+      background-repeat: repeat;
+      background-size: cover;
+     
+     
+      display: block;
+      transition: 0.5s;
+      border-top: 5px solid rgb(112, 109, 109);
+      border-bottom: 5px solid rgb(128, 126, 126);
+  
+    }
+    .box span:nth-child(1)
+    {
+      background-position: calc(0px );
+    }
+    .box span:nth-child(2)
+    {
+      background-position: calc(-70px * 1);
+    }
+    .box span:nth-child(3)
+    {
+      background-position: calc(-70px * 2);
+    }
+    .box span:nth-child(4)
+    {
+      background-position: calc(-7px * 3);
+    }
+  }

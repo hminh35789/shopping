@@ -41,7 +41,7 @@ const Cart = () => {
       const updateCart = async () => {
         for (const item of cartLocal){
           const res = await getData(`product/${item._id}`)
-          const { _id, title, images, price, inStock, sold } = res.product
+          const {  _id, title, images, price, inStock, sold } = res.product
           if(inStock > 0){
             newArr.push({ 
               _id, title, images, price, inStock, sold,
@@ -133,11 +133,12 @@ const Cart = () => {
   
   return (
     <div className="row mx-auto">
-      <Head>
+        <Head>
           <title>Cart Page</title>
         </Head>
         <div className="col-md-8 text-secondary table-responsive my-3">
           <h2 className="text-uppercase">Shopping Cart</h2>
+
 
           <table className="table my-3">
             <tbody>
@@ -149,8 +150,8 @@ const Cart = () => {
             </tbody>
           </table>
         </div>
-        <div className="col-md-4 my-3 text-right text-uppercase text-secondary">
-            <form>
+        <div className="col-md-4 my-3 text-right text-uppercase text-secondary shipping">
+            <form className='shipping2'>
               <h2>Shipping</h2>
 
               <label htmlFor="address">Address</label>

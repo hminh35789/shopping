@@ -3,8 +3,8 @@ const Toast = ({msg, handleShow, bgColor}) => {
    
    setTimeout(handleShow, 4000)
   return(
-      <div className={`toast  position-fixed text-light ${bgColor} show` }
-      style={{ top: '5px', right: '5px', zIndex: 9, minWidth: '280px' }} >
+      <div className={`toast  position-fixed text-light ${bgColor} show ` }
+      style={{ top: '5px', right: '5px', zIndex: 9, minWidth: '280px', zIndex:99 }} >
 
           <div className={`toast-header ${bgColor} text-light`}>
               <strong className="mr-auto text-light">{msg.title}</strong>

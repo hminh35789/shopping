@@ -26,6 +26,18 @@ const CartItem = ({item, dispatch, cart}) => {
                 ? <p className="mb-1 text-danger">In Stock: {item.inStock}</p>
                 : <p className="mb-1 text-danger">Out Stock</p>
             }
+             <button className="btn btn-outline-secondary"
+            onClick={ () => dispatch(decrease(cart, item._id)) } 
+            disabled={item.quantity === 1 ? true : false} 
+            > - 
+            </button>
+
+            <span className="px-3">{item.quantity}</span>
+
+            <button className="btn btn-outline-secondary"
+            onClick={ () => dispatch(increase(cart, item._id)) }
+            disabled={item.quantity === item.inStock ? true : false} 
+            > + </button>
         </td>
 
         <td className="align-middle" style={{minWidth: '150px'}}>

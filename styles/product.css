@@ -3,6 +3,7 @@
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     justify-content: center;
     margin: 20px 0;
+   
 }
 .products .card{
     margin: 10px auto;
@@ -38,7 +39,7 @@
     border:solid 3px rgb(111, 199, 221);
     padding: 2px;
 }
-@media  (max-width : 650px)
+@media  (max-width : 650px) 
 {
    .galary img
    {
@@ -49,10 +50,34 @@
    {
     color: blue;
    }
+   .modalMobi
+   {
+     height: auto;
+     min-height: 100%;
+   }
+   .modalOpen
+   {
+    padding: 0;
+    margin: 0;
+   }
+  
 }
+
 @media screen and (min-width: 1400px) {
-    .modal-dialog {
-      position: relative;
-      margin-right: 20px !important;
+    .modalOpen {
+     position: relative;
+     margin-right: 30px !important;  
     }
+  }
+
+  /*modal mobile full screen */
+ 
+  /*shipping*/
+  .shipping
+  {
+    border: 5px  dotted rgb(241, 245, 204);;
+    /* padding: 5px;
+    border-image-source: url("https://iheartcraftythings.com/wp-content/uploads/2021/04/Frog-DRAWING-%E2%80%93-STEP-10.jpg") ;
+    border-image-slice: 48%; */
+
   }

@@ -1,16 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import  Head  from "next/head";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext,  } from "react";
 import { getData } from '../../utils/fetchData'
-
+import { useRouter } from 'next/router'
 import React from 'react'
 import { useEffect } from "react";
 import { DataContext } from '../../store/GlobalState'
 import { addToCart } from '../../store/Actions'
-
+import useScrollRestoration from "./useScrollRestoration";
+import Router from 'next/router'
  const DetailProduct = (props) => {
     const [product] = useState(props.product);
     const [tab, setTab] = useState(0)
+
+    const router = useRouter()
 
     const { state, dispatch } = useContext(DataContext)
     const { cart } = state
@@ -33,10 +36,18 @@ import { addToCart } from '../../store/Actions'
     } 
 
      return(
+        <div >
+         <div>
+                <button className="btn btn-dark" onClick={() => router.back()}>
+                    <i className="fas fa-long-arrow-alt-left"  aria-hidden="true"></i> Go Back
+                </button>
+            </div>
+       
          <div className="row detail_page">
              <Head>
                  <title>DetailProduct </title>
              </Head>
+          
              <div className="col-md-6">
                  {/* tab */}
                <img src={product.images[tab].url} alt={product.images[tab].url} 
@@ -59,6 +70,12 @@ import { addToCart } from '../../store/Actions'
                 </div>
             </div>
             <div className="col-md-6 mt-3">
+                 <div className="box">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 <h2 className="text-uppercase">{product.title}</h2>
                 <h5 className="text-danger">${product.price}</h5>
 
@@ -90,8 +107,8 @@ import { addToCart } from '../../store/Actions'
                   Product Details
                 </div>
                 <div className="modal fade" id="exampleModalCenter" data-backdrop="false" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-   <div className="modal-dialog modal-dialog-centered" role="document">
-     <div className="modal-content modalCard">
+   <div className="modal-dialog modal-dialog-centered modalOpen"  role="document" style={{height:"100%", width:"100%"}}>
+     <div className="modal-content modalCard modalMobi">
          <div className="row"> 
         <div className="col-8">
         <h4>Size Conversion</h4>
@@ -105,7 +122,7 @@ import { addToCart } from '../../store/Actions'
       
          </div>
        
-        <div className="content">
+        <div className="contentModal">
             <p>Model VN wears size M
             <br  /> 
             Height: (189 cm) 
@@ -161,9 +178,13 @@ import { addToCart } from '../../store/Actions'
 
          </div>
          </div>
+       
+      
+
 
             </div>
 
+         </div>
          </div>
      )
  }

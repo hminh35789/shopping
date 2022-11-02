@@ -53,3 +53,21 @@
     max-width: 400px;
     padding: 30px;
 }
+
+.btn
+{
+    background: rgba(205,237,211,0.5);
+    color: black;
+    border-color: rgba(205,237,211,0.5);
+}
+.btn:hover
+{
+    background: black;
+}
+.onCen
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
